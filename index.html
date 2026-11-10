@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>データベース演習環境</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.css">
+  <link rel="stylesheet" href="assets/style.css?v=exam-1.2">
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div>
+        <div class="eyebrow">DATABASE EXAM</div>
+        <h1 id="siteTitle">データベース演習環境</h1>
+        <p id="siteSubtitle">ブラウザで実行する SQLite 演習環境</p>
+      </div>
+      <div class="status-stack">
+        <span class="badge" id="stageBadge">第1DB</span>
+        <span class="status" id="status">読み込み中...</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="layout">
+    <aside class="sidebar">
+      <section class="card">
+        <div class="section-heading">
+          <div>
+            <div class="label">DATABASE</div>
+            <h2 id="dbTitle">試験練習用DB</h2>
+          </div>
+        </div>
+
+        <label class="field-label" id="dbSelectLabel" for="dbSelect">データベース</label>
+        <select id="dbSelect" class="select"></select>
+
+        <p class="description" id="dbDescription"></p>
+
+        <div class="exam-notes">
+          <div class="exam-notes-title">注意事項</div>
+          <ul>
+            <li>各ブラウザタブのデータベースは独立しています。複数タブ間で変更内容は共有されません。</li>
+            <li>ページを再読み込みするか「初期状態に戻す」を押すと，配布時の状態に戻ります。</li>
+            <li>SELECT はデータベースの内容を変更しません。</li>
+            <li>INSERT・UPDATE・DELETE などの変更は，そのタブ内のデータベースだけに反映されます。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading">
+          <div>
+            <div class="label">RELATIONSHIPS</div>
+            <h2>テーブル間の関係</h2>
+          </div>
+        </div>
+        <div class="diagram-wrap">
+          <a id="diagramLink" href="#" target="_blank" rel="noopener noreferrer" title="図を大きく表示">
+            <img id="diagram" alt="選択中データベースのテーブル関連図">
+          </a>
+        </div>
+        <p class="micro">
+          図をクリックすると拡大表示します。
+        </p>
+      </section>
+
+      <section class="card">
+        <div class="section-heading compact">
+          <div>
+            <div class="label">TABLES</div>
+            <h2>テーブル</h2>
+          </div>
+        </div>
+        <div id="tableList" class="table-list"></div>
+      </section>
+    </aside>
+
+    <section class="workspace">
+      <section class="card editor-card">
+        <div class="editor-header">
+          <div>
+            <div class="label">SQL EDITOR</div>
+            <h2>SQLを実行</h2>
+          </div>
+        </div>
+
+        <div class="toolbar">
+          <select id="exampleSelect" class="select example-select" aria-label="SQL例">
+            <option value="">SQL例を選択...</option>
+          </select>
+
+          <button id="runBtn" class="button primary">▶ 実行</button>
+          <button id="resetBtn" class="button">↺ 初期状態に戻す</button>
+          <button id="saveSqlBtn" class="button">SQLを保存</button>
+        </div>
+
+        <textarea id="sqlEditor" spellcheck="false" aria-label="SQL editor"></textarea>
+
+        <div class="editor-footer">
+          <span>SQLの実行はブラウザ内で行われます。</span>
+          <span id="dirtyIndicator"></span>
+        </div>
+      </section>
+
+      <section class="card result-card">
+        <div class="section-heading result-heading">
+          <div>
+            <div class="label">RESULT</div>
+            <h2>実行結果</h2>
+          </div>
+          <div id="timing"></div>
+        </div>
+        <div id="message" class="message">データベースを読み込んでいます...</div>
+        <div id="result"></div>
+      </section>
+
+      <section class="card">
+        <div class="section-heading">
+          <div>
+            <div class="label">SCHEMA</div>
+            <h2>スキーマ</h2>
+          </div>
+        </div>
+        <div id="schema" class="schema-grid"></div>
+      </section>
+</section>
+  </main>
+
+  <footer>
+    データベース演習環境 · Browser-based SQLite
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/show-hint.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/hint/sql-hint.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/matchbrackets.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/addon/edit/closebrackets.min.js"></script>
+  <script src="assets/app.js?v=exam-1.2"></script>
+</body>
+</html>

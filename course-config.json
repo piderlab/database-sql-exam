@@ -1,0 +1,23 @@
+{
+  "version": "exam-1.2",
+  "siteTitle": "データベース演習環境",
+  "subtitle": "ブラウザで実行する SQLite 演習環境",
+  "databases": [
+    {
+      "id": "exam_practice",
+      "title": "試験練習用DB",
+      "stage": "第1DB",
+      "file": "databases/exam_practice.db",
+      "diagram": "images/exam_common.png",
+      "description": "試験練習用の8テーブル。"
+    },
+    {
+      "id": "exam",
+      "title": "試験用DB",
+      "stage": "第2DB",
+      "file": "databases/exam.db",
+      "diagram": "images/exam_common.png",
+      "description": "試験用の11テーブル。"
+    }
+  ]
+}
